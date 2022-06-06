@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { PAGES_CONFIG } from '@app/shared';
 
 @Component({
   selector: 'teletronics-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  constructor(private readonly router: Router) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  openAdd(): void {
+    this.router.navigate([PAGES_CONFIG.cryptoCurrency.children.add.route]);
   }
-
 }
