@@ -1,5 +1,9 @@
 {
     "HOME": {
         "GET_STARTED": "Get Started"
+    },
+    "HEADER": {
+        "LIVE_CRYPTO": "Live Crypto",
+        "ADD": "+ Add"
     }
 }

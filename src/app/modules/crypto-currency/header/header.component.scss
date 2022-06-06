@@ -1,0 +1,20 @@
+@import '../../../../assets//style/variables';
+@import '../../../../assets//style/mixins';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    @include for-phone-only {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__title {
+        color: $text-color;
+        @include for-phone-only {
+            margin-bottom: 2rem;
+        }
+    }
+}

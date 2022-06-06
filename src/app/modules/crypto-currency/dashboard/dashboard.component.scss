@@ -1,0 +1,17 @@
+@import '../../../../assets//style//variables';
+
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 0;
+
+    &__header {
+        width: 100%;
+        padding-bottom: 1rem;
+        margin-bottom: 5rem;
+        border-bottom: 0.1rem solid $line-color;
+    }
+}

@@ -1,8 +1,10 @@
 @import "./assets/style/base";
+@import "./assets/style/mixins";
 
 html,
 body {
   height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 teletronics-loader {
@@ -10,4 +12,10 @@ teletronics-loader {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+teletronics-button {
+  @include for-phone-only {
+    width: 100%;
+  }
 }
