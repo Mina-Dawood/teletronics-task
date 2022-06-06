@@ -22,7 +22,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
     const token = LocalStorageService.getToken();
     if (token) {
-      headers = headers.append('Authorization', `Bearer ${token}`);
+      // commented to avoid CORS errors with crypto currency assets API
+      //   headers = headers.append('Authorization', `Bearer ${token}`);
     }
 
     const newRequest = request.clone({ headers });
