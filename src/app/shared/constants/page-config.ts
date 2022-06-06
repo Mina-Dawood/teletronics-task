@@ -9,15 +9,15 @@ export const PAGES_CONFIG = {
     children: {
       dashboard: {
         name: 'dashboard',
-        route: '/dashboard',
+        route: '/crypto-currency/dashboard',
       },
       details: {
         name: 'details',
-        route: '/details',
+        route: '/crypto-currency/details',
       },
       add: {
         name: 'add',
-        route: '/add',
+        route: '/crypto-currency/add',
       },
     },
   },
