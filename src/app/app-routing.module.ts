@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PAGES_CONFIG } from '@app/shared';
+import { AuthenticationGuard } from '@app/shared';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: PAGES_CONFIG.cryptoCurrency.name,
-    // TODO: implement canActivate
+    canActivate: [AuthenticationGuard],
     loadChildren: () =>
       import('./modules/crypto-currency/crypto-currency.module').then(
         (m) => m.CryptoCurrencyModule
