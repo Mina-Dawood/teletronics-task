@@ -1,1 +1,13 @@
-@import "./assets//style/base";
+@import "./assets/style/base";
+
+html,
+body {
+  height: 100%;
+}
+
+teletronics-loader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
