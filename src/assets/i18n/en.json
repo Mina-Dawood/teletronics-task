@@ -8,5 +8,9 @@
     },
     "CURRENCY_CARD": {
         "REMOVE": "Remove"
+    },
+    "ADD": {
+        "ADD_NEW_CURRENCIES_TO_DASHBOARD": "Add new currencies to dashboard",
+        "BACK": "Back"
     }
 }

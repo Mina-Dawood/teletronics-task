@@ -1,10 +1,12 @@
 <div class="dashboard">
-    <teletronics-header class="dashboard__header"></teletronics-header>
+    <teletronics-header [title]="'HEADER.LIVE_CRYPTO' | translate" [buttonText]="'HEADER.ADD' | translate"
+        (onClick)="openAdd()" class="dashboard__header"></teletronics-header>
 
     <div *ngIf="!isLoading" class="dashboard__currency-list-container">
         <div class="dashboard__currency-list-container--list">
             <ng-container *ngFor="let currency of currencies; let i = index">
-                <teletronics-currency-card (cardRemove)="removeCurrency(currency.id)" [currencyData]="currency">
+                <teletronics-currency-card [buttonText]="'CURRENCY_CARD.REMOVE' | translate"
+                    (onClick)="removeCurrency(currency.id)" [currencyData]="currency">
                 </teletronics-currency-card>
             </ng-container>
         </div>

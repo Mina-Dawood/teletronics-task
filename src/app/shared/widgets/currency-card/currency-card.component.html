@@ -3,5 +3,5 @@
         <div class="card__title" (click)="openDetails()">{{ currencyData.name }}</div>
         <span class="card__second-title">{{ currencyData.priceUsd | tCurrency }}</span>
     </div>
-    <span class="card__remove-link" (click)="cardRemove.emit()">{{'CURRENCY_CARD.REMOVE' | translate}}</span>
+    <span *ngIf="buttonText" class="card__remove-link" (click)="onClick.emit()">{{buttonText}}</span>
 </div>

@@ -1,0 +1,4 @@
+<div class="card" (click)="onClick.emit()" [ngClass]="{'is-selected': isSelected}">
+    <div class="card__title">{{ currencyData.name }}</div>
+    <span class="card__second-title">{{ currencyData.priceUsd | tCurrency }}</span>
+</div>

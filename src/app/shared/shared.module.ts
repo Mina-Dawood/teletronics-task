@@ -5,11 +5,13 @@ import { ButtonComponent } from './components/button/button.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CurrencyCardComponent } from './widgets/currency-card/currency-card.component';
 import { TCurrencyPipe } from '@app/shared/pipes';
+import { RoundedCurrencyComponent } from './widgets/rounded-currency/rounded-currency.component';
 
 const SHARED_COMPONENTS = [
   LoaderComponent,
   ButtonComponent,
   CurrencyCardComponent,
+  RoundedCurrencyComponent,
 ];
 const SHARED_PIPES = [TCurrencyPipe];
 const SHARED_MODULES = [TranslateModule];

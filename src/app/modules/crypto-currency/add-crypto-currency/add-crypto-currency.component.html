@@ -1,1 +1,17 @@
-<p>add-crypto-currency works!</p>
+<div class="add">
+    <teletronics-header [title]="'ADD.ADD_NEW_CURRENCIES_TO_DASHBOARD' | translate"
+        [buttonText]="'ADD.BACK' | translate" (onClick)="back()" class="add__header"></teletronics-header>
+
+    <div *ngIf="!isLoading" class="add__currency-list-container">
+        <div class="add__currency-list-container--list">
+            <ng-container *ngFor="let currency of currencies; let i = index">
+                <teletronics-rounded-currency
+                    (onClick)="!!selectedCurrencies?.includes(currency.id) ? deselectCurrency(currency.id) : selectCurrency(currency.id)"
+                    [currencyData]="currency" [isSelected]="!!selectedCurrencies?.includes(currency.id)">
+                </teletronics-rounded-currency>
+            </ng-container>
+        </div>
+    </div>
+
+    <teletronics-loader *ngIf="isLoading"></teletronics-loader>
+</div>
