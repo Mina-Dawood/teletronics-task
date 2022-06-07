@@ -18,11 +18,21 @@ export class CryptoCurrencyService {
     }
 
     const toData = (res: GlobalResponse<CryptoCurrency>) => {
-      this.originalItems = res.data;
+      this.originalItems = res.data as CryptoCurrency[];
       return this.originalItems;
     };
     return this.http
       .get<GlobalResponse<CryptoCurrency>>(API_CONFIG.CRYPTO_CURRENCY.GET_ITEMS)
+      .pipe(map(toData));
+  }
+
+  getItemById(id: string): Observable<CryptoCurrency> {
+    const toData = (res: GlobalResponse<CryptoCurrency>) =>
+      res.data as CryptoCurrency;
+    return this.http
+      .get<GlobalResponse<CryptoCurrency>>(
+        `${API_CONFIG.CRYPTO_CURRENCY.GET_ITEMS}/${id}`
+      )
       .pipe(map(toData));
   }
 }

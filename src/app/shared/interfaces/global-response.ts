@@ -1,4 +1,4 @@
 export interface GlobalResponse<T> {
-  data: T[];
+  data: T | T[];
   timestamp: number;
 }
