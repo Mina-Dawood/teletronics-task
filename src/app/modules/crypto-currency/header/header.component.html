@@ -1,4 +1,4 @@
 <div class="header">
-    <h1 class="header__title">{{'HEADER.LIVE_CRYPTO' | translate}}</h1>
-    <teletronics-button [buttonText]="'HEADER.ADD' | translate" (onClick)="openAdd()"></teletronics-button>
+    <h1 class="header__title">{{title}}</h1>
+    <teletronics-button *ngIf="buttonText" [buttonText]="buttonText" (onClick)="onClick.emit()"></teletronics-button>
 </div>

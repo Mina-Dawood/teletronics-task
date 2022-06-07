@@ -3,12 +3,13 @@ import {
   CryptoCurrencyService,
   LocalStorageService,
 } from '@app/shared/services';
-import { PRICE_WEBSOCKET_URL } from '@app/shared/constants';
+import { PAGES_CONFIG, PRICE_WEBSOCKET_URL } from '@app/shared/constants';
 
 import { finalize, Subject, Subscription, takeUntil } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 import { CryptoCurrency } from '@app/shared/interfaces';
 import { WebSockerMsg } from '@app/shared/types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'teletronics-dashboard',
@@ -22,9 +23,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currencies!: CryptoCurrency[];
   isLoading!: boolean;
 
-  constructor(private readonly cryptoCurrencyService: CryptoCurrencyService) {}
+  constructor(
+    private readonly cryptoCurrencyService: CryptoCurrencyService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.setSelectedCurrencies();
     this.loadAllCryptoCurrencies();
     this.listenOnSelectedCurrenciesPrices();
   }
@@ -45,6 +50,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Method to navigate to add page, so we can add/remove currencies
+   */
+  openAdd(): void {
+    this.router.navigate([PAGES_CONFIG.cryptoCurrency.children.add.route]);
+  }
+
+  /**
    * Method to load all currencies
    */
   private loadAllCryptoCurrencies(): void {
@@ -62,18 +74,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Method to listen on any change in prices to update dashboard live prices
    */
   private listenOnSelectedCurrenciesPrices(): void {
+    if (this.selectedCurrencies) {
+      const webSocketUrl = `${PRICE_WEBSOCKET_URL}${this.selectedCurrencies?.join(
+        ','
+      )}`;
+      const pricesWs = webSocket<WebSockerMsg>(webSocketUrl);
+
+      this.unsubscribe();
+
+      this.subscriber$ = pricesWs.subscribe({
+        next: (msg: WebSockerMsg) => this.updateCurrenciesPrices(msg),
+      });
+    }
+  }
+
+  /**
+   * Method to set selected currencies
+   */
+  private setSelectedCurrencies(): void {
     this.selectedCurrencies =
       LocalStorageService.getSelectedCurrencies() as string[];
-    const webSocketUrl = `${PRICE_WEBSOCKET_URL}${this.selectedCurrencies?.join(
-      ','
-    )}`;
-    const pricesWs = webSocket<WebSockerMsg>(webSocketUrl);
-
-    this.unsubscribe();
-
-    this.subscriber$ = pricesWs.subscribe({
-      next: (msg: WebSockerMsg) => this.updateCurrenciesPrices(msg),
-    });
   }
 
   private unsubscribe(): void {
@@ -111,6 +131,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
   }

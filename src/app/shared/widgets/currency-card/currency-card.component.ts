@@ -11,11 +11,11 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CurrencyCardComponent {
   @Input() currencyData!: CryptoCurrency;
-  @Output() cardRemove: EventEmitter<void> = new EventEmitter<void>();
+  @Input() buttonText!: string;
+  @Input() isSelected!: boolean;
+  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private readonly router: Router) {
-    CurrencyPipe;
-  }
+  constructor(private readonly router: Router) {}
 
   /**
    * Method to open details page of clicked currency card
