@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { LocalStorageService, PAGES_CONFIG } from '@app/shared';
+import { LocalStorageService } from '@app/shared/services';
+import { PAGES_CONFIG } from '@app/shared/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   login(): Observable<boolean> {
     /** Simulate that we store JWT in local storage */

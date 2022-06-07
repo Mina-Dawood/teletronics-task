@@ -11,4 +11,6 @@ export interface CryptoCurrency {
   changePercent24Hr: string;
   vwap24Hr: string;
   explorer: string;
+  /** Flag to highlight changed card in dashboard */
+  changed?: boolean;
 }

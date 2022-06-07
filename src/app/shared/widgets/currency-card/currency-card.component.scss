@@ -1,0 +1,51 @@
+@import "../../../../assets/style/variables";
+@import "../../../../assets/style/mixins";
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 0.2rem solid $line-color;
+    padding: 2rem;
+    width: 30rem;
+    transition: 0.3s;
+    min-height: 12rem;
+    background-color: $back-color;
+    transition: all 0.3s;
+
+    &.data-changed {
+        background-color: $green;
+    }
+
+    @include for-phone-up-tablet {
+        width: 35rem;
+    }
+
+    &:hover {
+        box-shadow: 0 8px 16px 0 $shadow-color;
+    }
+    
+    &__title {
+        margin-bottom: 0.25rem;
+        font-size: 2rem;
+        cursor: pointer;
+        &:hover {
+            color: $btn-back-color;
+        }
+    }
+
+    &__second-title {
+        color: $grey-dark;
+        font-size: 1.5rem;
+    }
+
+    &__remove-link {
+        cursor: pointer;
+        color: $text-red;
+        align-self: flex-end;
+        font-size: 1.5rem;
+        &:hover {
+            color: $text-red-light;
+        }
+    }
+}

@@ -7,13 +7,13 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PAGES_CONFIG } from '@app/shared';
+import { PAGES_CONFIG } from '@app/shared/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
