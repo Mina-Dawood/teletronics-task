@@ -5,5 +5,8 @@
     "HEADER": {
         "LIVE_CRYPTO": "Live Crypto",
         "ADD": "+ Add"
+    },
+    "CURRENCY_CARD": {
+        "REMOVE": "Remove"
     }
 }

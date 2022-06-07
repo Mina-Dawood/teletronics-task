@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PAGES_CONFIG } from '@app/shared';
-import { AuthenticationGuard } from '@app/shared';
+import { PAGES_CONFIG } from '@app/shared/constants';
+import { AuthenticationGuard } from '@app/shared/guards';
 
 const routes: Routes = [
   {

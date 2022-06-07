@@ -3,3 +3,9 @@
         @content;
     }
 }
+
+@mixin for-phone-up-tablet {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}

@@ -14,4 +14,19 @@
         margin-bottom: 5rem;
         border-bottom: 0.1rem solid $line-color;
     }
+
+    &__currency-list-container {
+        display: flex;
+        justify-content: center;
+        padding: 3rem;
+
+        &--list {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    }
+
 }

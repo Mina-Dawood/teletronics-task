@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PAGES_CONFIG } from '@app/shared';
+import { PAGES_CONFIG } from '@app/shared/constants';
 import { CryptoCurrencyComponent } from './crypto-currency.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailsComponent } from './details/details.component';
