@@ -7,7 +7,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TCurrencyPipe implements PipeTransform {
   private currency: string = 'USD';
 
-  transform(value: number | string): string {
+  transform(value: number | string | undefined): string {
+    if (!value) {
+      return '';
+    }
+
     const formattedNumber = new CurrencyPipe('en').transform(
       +value,
       this.currency,

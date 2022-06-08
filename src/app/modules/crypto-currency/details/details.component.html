@@ -5,7 +5,7 @@
             [buttonText]="'DETAILS.BACK' | translate" (onClick)="back()" class="details__header"></teletronics-header>
 
         <div class="details__card">
-            <ng-container *ngFor="let item of ('DETAILS.CURRENCY_VALUES' | translate)">
+            <ng-container *ngFor="let item of CURRENCY_DETAILS_KEYS">
                 <ng-container *ngTemplateOutlet="keyValueTemp;context{key: item.KEY, value: currencyData[item.VALUE]}">
                 </ng-container>
             </ng-container>
@@ -15,7 +15,7 @@
 </div>
 
 <ng-template #keyValueTemp let-key="key" let-value="value">
-    <div>
+    <div *ngIf="value">
         <span class="details__card--key">{{ key }}: </span>
         <span class="details__card--value">{{ value }}</span>
     </div>

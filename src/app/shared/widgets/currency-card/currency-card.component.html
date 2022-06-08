@@ -1,7 +1,7 @@
-<div class="card" [ngClass]="{'data-changed': currencyData.changed}">
+<div class="card" [ngClass]="{'data-changed': currencyData?.changed}">
     <div>
-        <div class="card__title" (click)="openDetails()">{{ currencyData.name }}</div>
-        <span class="card__second-title">{{ currencyData.priceUsd | tCurrency }}</span>
+        <div class="card__title" (click)="openDetails()">{{ currencyData?.name }}</div>
+        <span *ngIf="currencyData?.priceUsd" class="card__second-title">{{ currencyData.priceUsd | tCurrency }}</span>
     </div>
     <span *ngIf="buttonText" class="card__remove-link" (click)="onClick.emit()">{{buttonText}}</span>
 </div>
