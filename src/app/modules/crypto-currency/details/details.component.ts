@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PAGES_CONFIG } from '@app/shared/constants';
+import { CURRENCY_DETAILS_KEYS, PAGES_CONFIG } from '@app/shared/constants';
 import { CryptoCurrency } from '@app/shared/interfaces';
 import { CryptoCurrencyService } from '@app/shared/services';
 
@@ -12,6 +12,7 @@ import { CryptoCurrencyService } from '@app/shared/services';
 })
 export class DetailsComponent implements OnInit {
   currencyData$!: Observable<CryptoCurrency | any>;
+  CURRENCY_DETAILS_KEYS = CURRENCY_DETAILS_KEYS;
 
   constructor(
     private readonly cryptoCurrencyService: CryptoCurrencyService,

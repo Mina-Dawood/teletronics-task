@@ -30,9 +30,9 @@ export class HomeComponent {
   /**
    * Method to check if no currencies selected before then set default currencies to be displayed on dashboard page
    */
-  private setDefaultCurrencies(): void {
+  setDefaultCurrencies(): void {
     const selectedCurrencies = LocalStorageService.getSelectedCurrencies();
-    if (!selectedCurrencies) {
+    if (!selectedCurrencies || !selectedCurrencies?.length) {
       LocalStorageService.setSelectedCurrencies(
         DEFAULT_SELECTED_CURRENCIES.split(',')
       );

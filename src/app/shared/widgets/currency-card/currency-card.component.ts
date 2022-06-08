@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CryptoCurrency } from '@app/shared/interfaces';
 import { PAGES_CONFIG } from '@app/shared/constants';
-import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'teletronics-currency-card',
@@ -22,7 +21,7 @@ export class CurrencyCardComponent {
    */
   openDetails(): void {
     this.router.navigate([PAGES_CONFIG.cryptoCurrency.children.details.route], {
-      queryParams: { id: this.currencyData.id },
+      queryParams: { id: this.currencyData?.id },
     });
   }
 }
