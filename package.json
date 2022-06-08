@@ -6,7 +6,9 @@
     "start": "ng serve -o",
     "build": "ng build --aot",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --code-coverage"
+    "test": "ng test --code-coverage",
+    "build:docker": "docker build -t teletronics .",
+    "start:docker": "docker run -p 4200:80 teletronics"
   },
   "private": true,
   "dependencies": {
