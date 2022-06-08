@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject<void>();
-  private pricesWs!: WebSocketSubject<WebSockerMsg>
+  private pricesWs!: WebSocketSubject<WebSockerMsg>;
   private subscriber$: Subscription = new Subscription();
   private selectedCurrencies!: string[];
   currencies!: CryptoCurrency[];
@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setSelectedCurrencies();
     this.loadAllCryptoCurrencies();
-    this.listenOnSelectedCurrenciesPrices();
   }
 
   /**
@@ -68,13 +67,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         finalize(() => (this.isLoading = false))
       )
-      .subscribe((currencies) => this.setCurrenciesToDisplay(currencies));
+      .subscribe((currencies) => {
+        this.setCurrenciesToDisplay(currencies);
+        this.listenOnSelectedCurrenciesPrices();
+      });
   }
 
   /**
    * Method to listen on any change in prices to update dashboard live prices
    */
-  private listenOnSelectedCurrenciesPrices(): void {debugger
+  private listenOnSelectedCurrenciesPrices(): void {
     if (this.selectedCurrencies?.length) {
       const webSocketUrl = `${PRICE_WEBSOCKET_URL}${this.selectedCurrencies?.join(
         ','
@@ -85,6 +87,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       this.subscriber$ = this.pricesWs.subscribe({
         next: (msg: WebSockerMsg) => this.updateCurrenciesPrices(msg),
+        error: () => this.listenOnSelectedCurrenciesPrices(),
       });
     }
   }
