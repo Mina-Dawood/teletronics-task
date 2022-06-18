@@ -19,7 +19,7 @@ export class CryptoCurrencyService {
 
     const toData = (res: GlobalResponse<CryptoCurrency>) => {
       this.originalItems = res.data as CryptoCurrency[];
-      return this.originalItems;
+      return this.originalItems.sort((a, b) => a.name > b.name ? 1 : -1);
     };
     return this.http
       .get<GlobalResponse<CryptoCurrency>>(API_CONFIG.CRYPTO_CURRENCY.GET_ITEMS)

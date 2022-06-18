@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CurrencyCardComponent } from './widgets/currency-card/currency-card.component';
 import { TCurrencyPipe } from '@app/shared/pipes';
 import { RoundedCurrencyComponent } from './widgets/rounded-currency/rounded-currency.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const SHARED_COMPONENTS = [
   LoaderComponent,
@@ -13,7 +14,7 @@ const SHARED_COMPONENTS = [
   CurrencyCardComponent,
   RoundedCurrencyComponent,
 ];
-const SHARED_PIPES = [TCurrencyPipe];
+const SHARED_PIPES = [TCurrencyPipe, FilterPipe];
 const SHARED_MODULES = [TranslateModule];
 
 @NgModule({

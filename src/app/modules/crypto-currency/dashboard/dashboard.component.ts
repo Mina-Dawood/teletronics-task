@@ -8,7 +8,7 @@ import { PAGES_CONFIG, PRICE_WEBSOCKET_URL } from '@app/shared/constants';
 import { finalize, Subject, Subscription, takeUntil } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { CryptoCurrency } from '@app/shared/interfaces';
-import { WebSockerMsg } from '@app/shared/types';
+import { WebSocketMsg } from '@app/shared/types';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject<void>();
-  private pricesWs!: WebSocketSubject<WebSockerMsg>;
+  private pricesWs!: WebSocketSubject<WebSocketMsg>;
   private subscriber$: Subscription = new Subscription();
   private selectedCurrencies!: string[];
   currencies!: CryptoCurrency[];
@@ -81,12 +81,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const webSocketUrl = `${PRICE_WEBSOCKET_URL}${this.selectedCurrencies?.join(
         ','
       )}`;
-      this.pricesWs = webSocket<WebSockerMsg>(webSocketUrl);
+      this.pricesWs = webSocket<WebSocketMsg>(webSocketUrl);
 
       this.unsubscribe();
 
       this.subscriber$ = this.pricesWs.subscribe({
-        next: (msg: WebSockerMsg) => this.updateCurrenciesPrices(msg),
+        next: (msg: WebSocketMsg) => this.updateCurrenciesPrices(msg),
         error: () => this.listenOnSelectedCurrenciesPrices(),
       });
     }
@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Method to update live dashboard
    * @param newPrices that come from server
    */
-  private updateCurrenciesPrices(newPrices: WebSockerMsg): void {
+  private updateCurrenciesPrices(newPrices: WebSocketMsg): void {
     const ids: string[] = Object.keys(newPrices);
     ids.forEach((id) => {
       const currencyObject = this.currencies.find(
