@@ -7,6 +7,7 @@ import {
   LocalStorageService,
 } from '@app/shared/services';
 import { finalize, Subject, takeUntil } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'teletronics-add-crypto-currency',
@@ -19,14 +20,18 @@ export class AddCryptoCurrencyComponent implements OnInit {
   currencies!: CryptoCurrency[];
   isLoading!: boolean;
 
+  cryptoForm!: FormGroup;
+
   constructor(
     private readonly cryptoCurrencyService: CryptoCurrencyService,
+    private readonly fb: FormBuilder,
     private readonly router: Router
   ) {}
 
   ngOnInit(): void {
     this.setSelectedCurrencies();
     this.loadAllCryptoCurrencies();
+    this.setForm();
   }
 
   /**
@@ -56,6 +61,12 @@ export class AddCryptoCurrencyComponent implements OnInit {
     this.router.navigate([
       PAGES_CONFIG.cryptoCurrency.children.dashboard.route,
     ]);
+  }
+
+  private setForm(): void {
+    this.cryptoForm = this.fb.group({
+      search: [''],
+    });
   }
 
   /**

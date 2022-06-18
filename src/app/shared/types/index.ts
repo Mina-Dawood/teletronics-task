@@ -1,1 +1,1 @@
-export * from './websocker-msg.type';
+export * from './websocket-msg.type';
